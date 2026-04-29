@@ -33,12 +33,15 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime)
+            implementation(libs.flowmvi.core)
+            implementation(libs.flowmvi.compose)
         }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.compose.ui.test)
             implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.flowmvi.test)
         }
 
         androidMain.dependencies {

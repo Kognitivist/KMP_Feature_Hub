@@ -1,2 +1,3 @@
-package com.kognitivist.core.tools 
+package com.kognitivist.core.tools
 
+actual fun platform() = Platform.ANDROID

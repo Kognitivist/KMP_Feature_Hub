@@ -1,104 +1,75 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
 	alias(libs.plugins.kotlin.multiplatform)
-	alias(libs.plugins.android.kotlin.multiplatform.library)
-	alias(libs.plugins.android.lint)
+	alias(libs.plugins.compose.compiler)
+	alias(libs.plugins.compose.multiplatform)
+	alias(libs.plugins.android.kmp.library)
+	alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
-
-	// Target declarations - add or remove as needed below. These define
-	// which platforms this KMP module supports.
-	// See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
-	android {
-		namespace = "com.kognitivist.core"
-		compileSdk {
-			version = release(36) {
-				minorApiLevel = 1
-			}
-		}
-		minSdk = 24
-
-		withHostTestBuilder {
-		}
-
-		withDeviceTestBuilder {
-			sourceSetTreeName = "test"
-		}.configure {
-			instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-		}
+	androidTarget { //We need the deprecated target to have working previews
+		compilerOptions { jvmTarget = JvmTarget.JVM_17 }
 	}
 
-	// For iOS targets, this is also where you should
-	// configure native binary output. For more information, see:
-	// https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#build-xcframeworks
+	iosArm64()
+	iosSimulatorArm64()
 
-	// A step-by-step guide on how to include this library in an XCode
-	// project can be found here:
-	// https://developer.android.com/kotlin/multiplatform/migrate
-	val xcfName = "coreKit"
-
-	iosX64 {
-		binaries.framework {
-			baseName = xcfName
-		}
-	}
-
-	iosArm64 {
-		binaries.framework {
-			baseName = xcfName
-		}
-	}
-
-	iosSimulatorArm64 {
-		binaries.framework {
-			baseName = xcfName
-		}
-	}
-
-	// Source set declarations.
-	// Declaring a target automatically creates a source set with the same name. By default, the
-	// Kotlin Gradle Plugin creates additional source sets that depend on each other, since it is
-	// common to share sources between related targets.
-	// See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
 	sourceSets {
-		commonMain {
-			dependencies {
-				implementation(libs.kotlin.stdlib)
-				// Add KMP dependencies here
-			}
+		commonMain.dependencies {
+			api(libs.compose.runtime)
+			api(libs.compose.ui)
+			api(libs.compose.foundation)
+			api(libs.compose.resources)
+			api(libs.compose.ui.tooling.preview)
+			api(libs.compose.material3)
+			implementation(libs.kotlinx.coroutines.core)
+			implementation(libs.androidx.lifecycle.viewmodel)
+			implementation(libs.androidx.lifecycle.runtime)
+			implementation(libs.compose.nav3)
+			implementation(libs.kotlinx.serialization.json)
+			implementation(libs.kotlinx.datetime)
 		}
 
-		commonTest {
-			dependencies {
-				implementation(libs.kotlin.test)
-			}
+		commonTest.dependencies {
+			implementation(kotlin("test"))
+			implementation(libs.compose.ui.test)
+			implementation(libs.kotlinx.coroutines.test)
 		}
 
-		androidMain {
-			dependencies {
-				// Add Android-specific dependencies here. Note that this source set depends on
-				// commonMain by default and will correctly pull the Android artifacts of any KMP
-				// dependencies declared in commonMain.
-			}
+		androidMain.dependencies {
+			implementation(libs.kotlinx.coroutines.android)
 		}
 
-		getByName("androidDeviceTest") {
-			dependencies {
-				implementation(libs.androidx.core)
-				implementation(libs.androidx.junit)
-				implementation(libs.androidx.runner)
-			}
-		}
-
-		iosMain {
-			dependencies {
-				// Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
-				// Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
-				// part of KMP’s default source set hierarchy. Note that this source set depends
-				// on common by default and will correctly pull the iOS artifacts of any
-				// KMP dependencies declared in commonMain.
-			}
-		}
 	}
 
+	targets
+		.withType<KotlinNativeTarget>()
+		.matching { it.konanTarget.family.isAppleFamily }
+		.configureEach {
+			binaries {
+				framework {
+					baseName = "core"
+					isStatic = true
+				}
+			}
+		}
+}
+
+dependencies {
+	debugImplementation(libs.compose.ui.tooling)
+}
+android {
+	namespace = "com.kognitivist.app"
+	compileSdk = 36
+	defaultConfig {
+		minSdk = 23
+	}
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
+	}
 }

@@ -1,3 +1,10 @@
-package com.kognitivist.core
+package com.kognitivist.core.tools
 
-expect fun platform(): String
+import kotlinx.serialization.Serializable
+
+expect fun platform(): Platform
+
+@Serializable
+enum class Platform {
+	IOS, ANDROID
+}
