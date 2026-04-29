@@ -5,11 +5,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.kognitivist.native_features.features.calendar.mvi.CalendarIntent
 import com.kognitivist.native_features.features.calendar.mvi.CalendarState
-import pro.respawn.flowmvi.api.Container
 import pro.respawn.flowmvi.api.IntentReceiver
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import pro.respawn.flowmvi.compose.preview.EmptyReceiver
-import kotlin.time.Clock
 
 @Composable
 fun CalendarScreen(

@@ -22,15 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kognitivist.core.tools.NavigationActions
-import com.kognitivist.core.tools.Routes
-import com.kognitivist.core.tools.platform
-import com.kognitivist.list_features_level_1.ListFeaturesLevel1ScreenContent
-import com.kognitivist.list_features_level_1.mvi.ListFeaturesLevel1Action
-import com.kognitivist.list_features_level_1.mvi.ListFeaturesLevel1Intent
 import com.kognitivist.list_features_level_1.mvi.ListFeaturesLevel1State
-import pro.respawn.flowmvi.api.IntentReceiver
 import pro.respawn.flowmvi.compose.dsl.subscribe
-import pro.respawn.flowmvi.compose.preview.EmptyReceiver
 
 
 @Composable
