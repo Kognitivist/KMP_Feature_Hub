@@ -19,6 +19,9 @@ sealed interface Routes: NavKey{
 
 	@Serializable
 	data object CommonFeaturesRoute: Routes
+
+	@Serializable
+	data object DataBaseRoomRoute: Routes
 }
 
 
@@ -30,6 +33,7 @@ val navSavedStateConfiguration = SavedStateConfiguration {
 			subclass(Routes.NativeFeaturesRoute::class, Routes.NativeFeaturesRoute.serializer())
 			subclass(Routes.NativeCalendarRoute::class, Routes.NativeCalendarRoute.serializer())
 			subclass(Routes.CommonFeaturesRoute::class, Routes.CommonFeaturesRoute.serializer())
+			subclass(Routes.DataBaseRoomRoute::class, Routes.DataBaseRoomRoute.serializer())
 		}
 	}
 }

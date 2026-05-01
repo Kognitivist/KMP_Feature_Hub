@@ -4,6 +4,7 @@ import com.kognitivist.app.data.AppDatabase
 import com.kognitivist.app.data.TextDao
 import com.kognitivist.app.data.TextRepository
 import com.kognitivist.app.data.createDatabase
+import com.kognitivist.common_features.CommonFeaturesViewModel
 import com.kognitivist.list_features_level_1.ListFeaturesLevel1ViewModel
 import com.kognitivist.native_features.NativeFeaturesViewModel
 import com.kognitivist.native_features.features.calendar.CalendarViewModel
@@ -23,6 +24,7 @@ val viewModelModule = module {
 	viewModelOf(::ListFeaturesLevel1ViewModel)
 	viewModelOf(::NativeFeaturesViewModel)
 	viewModelOf(::CalendarViewModel)
+	viewModelOf(::CommonFeaturesViewModel)
 }
 
 val databaseModule = module {
