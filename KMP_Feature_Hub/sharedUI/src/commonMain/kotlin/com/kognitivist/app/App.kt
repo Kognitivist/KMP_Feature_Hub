@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,9 +21,9 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.scene.DialogSceneStrategy
 import androidx.navigation3.ui.NavDisplay
-import com.kognitivist.app.data.TextRepository
 import com.kognitivist.app.theme.AppTheme
 import com.kognitivist.common_features.CommonFeaturesScreen
+import com.kognitivist.common_features.dataBaseRoom.data.TextRepository
 import com.kognitivist.core.tools.NavigationActions
 import com.kognitivist.core.tools.Routes
 import com.kognitivist.core.tools.navSavedStateConfiguration

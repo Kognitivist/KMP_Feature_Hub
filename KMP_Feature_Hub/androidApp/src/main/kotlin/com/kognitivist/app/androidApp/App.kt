@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kognitivist.app.data.AppDatabase
 import com.kognitivist.app.databaseModule
 import com.kognitivist.app.initKoin
+import com.kognitivist.common_features.dataBaseRoom.data.AppDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

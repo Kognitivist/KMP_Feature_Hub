@@ -7,6 +7,8 @@ plugins {
 	alias(libs.plugins.compose.multiplatform)
 	alias(libs.plugins.android.kmp.library)
 	alias(libs.plugins.kotlinx.serialization)
+	alias(libs.plugins.room)
+	alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -34,6 +36,8 @@ kotlin {
 			implementation(libs.kotlinx.datetime)
 			implementation(libs.flowmvi.core)
 			implementation(libs.flowmvi.compose)
+			implementation(libs.room.runtime)
+			implementation(libs.androidx.sqlite.bundled)
 
 		}
 
@@ -45,6 +49,7 @@ kotlin {
 
 		androidMain.dependencies {
 			implementation(libs.kotlinx.coroutines.android)
+			implementation(libs.androidx.room.sqlite.wrapper)
 		}
 
 	}
@@ -74,5 +79,17 @@ android {
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_17
 		targetCompatibility = JavaVersion.VERSION_17
+	}
+}
+
+room {
+	schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+	with(libs.room.compiler) {
+		add("kspAndroid", this)
+		add("kspIosArm64", this)
+		add("kspIosSimulatorArm64", this)
 	}
 }

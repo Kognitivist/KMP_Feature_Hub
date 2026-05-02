@@ -4,7 +4,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kognitivist.app.App
-import com.kognitivist.app.data.AppDatabase
+import com.kognitivist.common_features.dataBaseRoom.data.AppDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager

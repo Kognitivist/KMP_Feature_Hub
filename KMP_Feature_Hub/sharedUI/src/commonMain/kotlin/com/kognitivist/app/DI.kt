@@ -1,10 +1,10 @@
 package com.kognitivist.app
 
-import com.kognitivist.app.data.AppDatabase
-import com.kognitivist.app.data.TextDao
-import com.kognitivist.app.data.TextRepository
-import com.kognitivist.app.data.createDatabase
 import com.kognitivist.common_features.CommonFeaturesViewModel
+import com.kognitivist.common_features.dataBaseRoom.data.AppDatabase
+import com.kognitivist.common_features.dataBaseRoom.data.TextDao
+import com.kognitivist.common_features.dataBaseRoom.data.TextRepository
+import com.kognitivist.common_features.dataBaseRoom.data.createDatabase
 import com.kognitivist.list_features_level_1.ListFeaturesLevel1ViewModel
 import com.kognitivist.native_features.NativeFeaturesViewModel
 import com.kognitivist.native_features.features.calendar.CalendarViewModel
