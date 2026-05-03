@@ -5,10 +5,14 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -33,6 +37,7 @@ import com.kognitivist.native_features.features.calendar.CalendarScreen
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun App(
@@ -51,40 +56,47 @@ fun App(
     )
     val dialogStrategy = remember { DialogSceneStrategy<NavKey>() }
 
-    NavDisplay(
-        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
-        backStack = backStack,
-        onBack = { backStack.removeLastOrNull() },
-        sceneStrategies = listOf(dialogStrategy),
-        transitionSpec = {
-            fadeIn(animationSpec = tween(220)) togetherWith
-                    fadeOut(animationSpec = tween(220))
-        },
-        entryProvider = entryProvider {
-            entry<Routes.ListFeaturesLevel1Route> {
-                ListFeaturesLevel1Screen(koinViewModel()){
-                    navigationProcessing(it, backStack)
+    Column {
+        TopAppBar(
+            title = { Text("Title") }
+        )
+        NavDisplay(
+            modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars),
+            backStack = backStack,
+            onBack = { backStack.removeLastOrNull() },
+            sceneStrategies = listOf(dialogStrategy),
+            transitionSpec = {
+                fadeIn(animationSpec = tween(220)) togetherWith
+                        fadeOut(animationSpec = tween(220))
+            },
+            entryProvider = entryProvider {
+                entry<Routes.ListFeaturesLevel1Route> {
+                    ListFeaturesLevel1Screen(koinViewModel()){
+                        navigationProcessing(it, backStack)
+                    }
                 }
-            }
-            entry<Routes.NativeFeaturesRoute>() { key ->
-                key.platform
-                NativeFeaturesScreen(koinViewModel()){
-                    navigationProcessing(it, backStack)
+                entry<Routes.NativeFeaturesRoute>() { key ->
+                    key.platform
+                    NativeFeaturesScreen(koinViewModel()){
+                        navigationProcessing(it, backStack)
+                    }
                 }
-            }
-            entry<Routes.NativeCalendarRoute>() {
-                CalendarScreen(koinViewModel())
-            }
-            entry<Routes.CommonFeaturesRoute>() {
-                CommonFeaturesScreen(koinViewModel()){
+                entry<Routes.NativeCalendarRoute>() {
+                    CalendarScreen(koinViewModel())
+                }
+                entry<Routes.CommonFeaturesRoute>() {
+                    CommonFeaturesScreen(koinViewModel()){
 
+                    }
+                }
+                entry<Routes.DataBaseRoomRoute>() {
+                    Box(modifier = Modifier.fillMaxSize())
                 }
             }
-            entry<Routes.DataBaseRoomRoute>() {
-                Box(modifier = Modifier.fillMaxSize())
-            }
-        }
-    )
+        )
+    }
+
+
 }
 
 fun navigationProcessing(action: NavigationActions, backStack: NavBackStack<NavKey>){
