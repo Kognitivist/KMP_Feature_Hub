@@ -1,12 +1,11 @@
-package com.kognitivist.app.androidApp
+package com.kognitivist.moodie.androidApp
 
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kognitivist.app.databaseModule
-import com.kognitivist.app.initKoin
-import com.kognitivist.common_features.dataBaseRoom.data.AppDatabase
+import com.kognitivist.data.local_data_source.settings.AppDatabase
+import com.kognitivist.moodie.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -19,7 +18,6 @@ class App: Application() {
 			androidContext(this@App)
 			modules(
 				androidDatabaseModule(applicationContext),
-				databaseModule
 			)
 		}
 	}

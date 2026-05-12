@@ -1,0 +1,107 @@
+package com.kognitivist.moodie.ui.kit.vectors
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.unit.dp
+
+val VectorRes.SelectedSettings: ImageVector
+    get() {
+        if (_SelectedSettings != null) {
+            return _SelectedSettings!!
+        }
+        _SelectedSettings = ImageVector.Builder(
+            name = "SelectedSettings",
+            defaultWidth = 24.dp,
+            defaultHeight = 24.dp,
+            viewportWidth = 24f,
+            viewportHeight = 24f
+        ).apply {
+            path(fill = SolidColor(Color(0xFFB24F9C))) {
+                moveTo(10.825f, 22f)
+                curveTo(10.375f, 22f, 9.988f, 21.85f, 9.663f, 21.55f)
+                curveTo(9.338f, 21.25f, 9.142f, 20.883f, 9.075f, 20.45f)
+                lineTo(8.85f, 18.8f)
+                curveTo(8.634f, 18.717f, 8.43f, 18.617f, 8.238f, 18.5f)
+                curveTo(8.046f, 18.383f, 7.859f, 18.258f, 7.675f, 18.125f)
+                lineTo(6.125f, 18.775f)
+                curveTo(5.709f, 18.958f, 5.292f, 18.975f, 4.875f, 18.825f)
+                curveTo(4.459f, 18.675f, 4.134f, 18.408f, 3.9f, 18.025f)
+                lineTo(2.725f, 15.975f)
+                curveTo(2.492f, 15.592f, 2.425f, 15.183f, 2.525f, 14.75f)
+                curveTo(2.625f, 14.317f, 2.85f, 13.958f, 3.2f, 13.675f)
+                lineTo(4.525f, 12.675f)
+                curveTo(4.509f, 12.558f, 4.5f, 12.446f, 4.5f, 12.337f)
+                verticalLineTo(11.663f)
+                curveTo(4.5f, 11.554f, 4.509f, 11.442f, 4.525f, 11.325f)
+                lineTo(3.2f, 10.325f)
+                curveTo(2.85f, 10.042f, 2.625f, 9.683f, 2.525f, 9.25f)
+                curveTo(2.425f, 8.817f, 2.492f, 8.408f, 2.725f, 8.025f)
+                lineTo(3.9f, 5.975f)
+                curveTo(4.134f, 5.592f, 4.459f, 5.325f, 4.875f, 5.175f)
+                curveTo(5.292f, 5.025f, 5.709f, 5.042f, 6.125f, 5.225f)
+                lineTo(7.675f, 5.875f)
+                curveTo(7.859f, 5.742f, 8.05f, 5.617f, 8.25f, 5.5f)
+                curveTo(8.45f, 5.383f, 8.65f, 5.283f, 8.85f, 5.2f)
+                lineTo(9.075f, 3.55f)
+                curveTo(9.142f, 3.117f, 9.338f, 2.75f, 9.663f, 2.45f)
+                curveTo(9.988f, 2.15f, 10.375f, 2f, 10.825f, 2f)
+                horizontalLineTo(13.175f)
+                curveTo(13.625f, 2f, 14.013f, 2.15f, 14.338f, 2.45f)
+                curveTo(14.663f, 2.75f, 14.859f, 3.117f, 14.925f, 3.55f)
+                lineTo(15.151f, 5.2f)
+                curveTo(15.367f, 5.283f, 15.571f, 5.383f, 15.763f, 5.5f)
+                curveTo(15.955f, 5.617f, 16.142f, 5.742f, 16.326f, 5.875f)
+                lineTo(17.875f, 5.225f)
+                curveTo(18.292f, 5.042f, 18.709f, 5.025f, 19.125f, 5.175f)
+                curveTo(19.542f, 5.325f, 19.867f, 5.592f, 20.101f, 5.975f)
+                lineTo(21.275f, 8.025f)
+                curveTo(21.509f, 8.408f, 21.576f, 8.817f, 21.476f, 9.25f)
+                curveTo(21.375f, 9.683f, 21.15f, 10.042f, 20.801f, 10.325f)
+                lineTo(19.476f, 11.325f)
+                curveTo(19.492f, 11.442f, 19.5f, 11.554f, 19.5f, 11.663f)
+                verticalLineTo(12.337f)
+                curveTo(19.5f, 12.446f, 19.484f, 12.558f, 19.451f, 12.675f)
+                lineTo(20.775f, 13.675f)
+                curveTo(21.125f, 13.958f, 21.351f, 14.317f, 21.451f, 14.75f)
+                curveTo(21.551f, 15.183f, 21.484f, 15.592f, 21.25f, 15.975f)
+                lineTo(20.051f, 18.025f)
+                curveTo(19.817f, 18.408f, 19.492f, 18.675f, 19.076f, 18.825f)
+                curveTo(18.659f, 18.975f, 18.242f, 18.958f, 17.826f, 18.775f)
+                lineTo(16.326f, 18.125f)
+                curveTo(16.142f, 18.258f, 15.95f, 18.383f, 15.75f, 18.5f)
+                curveTo(15.55f, 18.617f, 15.351f, 18.717f, 15.151f, 18.8f)
+                lineTo(14.925f, 20.45f)
+                curveTo(14.859f, 20.883f, 14.663f, 21.25f, 14.338f, 21.55f)
+                curveTo(14.013f, 21.85f, 13.625f, 22f, 13.175f, 22f)
+                horizontalLineTo(10.825f)
+                close()
+                moveTo(12.425f, 15.512f)
+                curveTo(12.542f, 15.471f, 12.651f, 15.4f, 12.75f, 15.3f)
+                lineTo(15.55f, 12.5f)
+                curveTo(15.834f, 12.217f, 16.017f, 11.871f, 16.101f, 11.462f)
+                curveTo(16.184f, 11.054f, 16.142f, 10.658f, 15.976f, 10.275f)
+                curveTo(15.809f, 9.892f, 15.559f, 9.583f, 15.226f, 9.35f)
+                curveTo(14.892f, 9.117f, 14.517f, 9f, 14.101f, 9f)
+                curveTo(13.684f, 9f, 13.309f, 9.129f, 12.976f, 9.387f)
+                curveTo(12.642f, 9.646f, 12.334f, 9.917f, 12.05f, 10.2f)
+                curveTo(11.75f, 9.917f, 11.438f, 9.646f, 11.113f, 9.387f)
+                curveTo(10.788f, 9.129f, 10.417f, 9f, 10f, 9f)
+                curveTo(9.584f, 9f, 9.205f, 9.113f, 8.863f, 9.337f)
+                curveTo(8.521f, 9.563f, 8.267f, 9.867f, 8.1f, 10.25f)
+                curveTo(7.934f, 10.633f, 7.896f, 11.029f, 7.988f, 11.438f)
+                curveTo(8.08f, 11.846f, 8.267f, 12.2f, 8.55f, 12.5f)
+                lineTo(11.325f, 15.3f)
+                curveTo(11.425f, 15.4f, 11.538f, 15.471f, 11.663f, 15.512f)
+                curveTo(11.788f, 15.554f, 11.917f, 15.575f, 12.05f, 15.575f)
+                curveTo(12.184f, 15.575f, 12.309f, 15.554f, 12.425f, 15.512f)
+                close()
+            }
+        }.build()
+
+        return _SelectedSettings!!
+    }
+
+@Suppress("ObjectPropertyName")
+private var _SelectedSettings: ImageVector? = null
