@@ -1,6 +1,8 @@
 package com.kognitivist.moodie.theme
 
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -19,7 +21,17 @@ import com.kognitivist.moodie.locale.ruStrings
 @Immutable
 data class Colors(
 	val background: Color,
-	val onBackground: Color
+	val onBackground: Color,
+	val surface1: Color,
+	val surface2: Color,
+	val primary: Color,
+	val accent: Color,
+	val hint: Color,
+	val stroke1: Color,
+	val stroke2: Color,
+	val text1: Color,
+	val text2: Color,
+	val text3: Color,
 )
 
 @Immutable
@@ -52,6 +64,16 @@ val LocalColors = staticCompositionLocalOf {
 	Colors(
 		background = Color.Unspecified,
 		onBackground = Color.Unspecified,
+		surface1 = Color.Unspecified,
+		surface2 = Color.Unspecified,
+		primary = Color.Unspecified,
+		accent = Color.Unspecified,
+		hint = Color.Unspecified,
+		stroke1 = Color.Unspecified,
+		stroke2 = Color.Unspecified,
+		text1 = Color.Unspecified,
+		text2 = Color.Unspecified,
+		text3 = Color.Unspecified,
 	)
 }
 val LocalTextStyles = staticCompositionLocalOf {
@@ -83,6 +105,7 @@ fun MoodieTheme(
 		LocalColors provides colors,
 		LocalStrings provides strings,
 		LocalTextStyles provides moodieTextStyles(),
+		LocalIndication provides ripple(color = colors.primary),
 		content = content
 	)
 }

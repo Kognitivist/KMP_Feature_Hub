@@ -15,9 +15,9 @@ sealed class NavRoutes(open val name: NavRouteName) {
 	@Serializable
 	data object Settings: NavRoutes(NavRouteName.SETTINGS)
 	@Serializable
-	data object ThemeBS: NavRoutes(NavRouteName.THEME_BS)
+	data object ThemeBS: NavRoutes(NavRouteName.THEME_BS), NestedScreenSettings
 	@Serializable
-	data object LanguageBS: NavRoutes(NavRouteName.LANGUAGE_BS)
+	data object LanguageBS: NavRoutes(NavRouteName.LANGUAGE_BS), NestedScreenSettings
 }
 
 @Serializable
@@ -29,5 +29,6 @@ enum class NavRouteName{
 	SETTINGS,
 	THEME_BS,
 	LANGUAGE_BS
-
 }
+
+interface NestedScreenSettings

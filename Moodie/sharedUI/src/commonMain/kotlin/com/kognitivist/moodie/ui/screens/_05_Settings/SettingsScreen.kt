@@ -53,13 +53,14 @@ import com.kognitivist.moodie.ui.navigation.NavRoutes
 import com.kognitivist.moodie.ui.screens._05_Settings.mvi.SettingsIntent
 import com.kognitivist.moodie.ui.screens._05_Settings.mvi.SettingsState
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import pro.respawn.flowmvi.api.IntentReceiver
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import pro.respawn.flowmvi.compose.preview.EmptyReceiver
 
 @Composable
 fun SettingsScreen(
-	container: SettingsVM = koinInject(),
+	container: SettingsVM = koinViewModel(),
 	onNavEvent: (NavEvents) -> Unit
 ) = with(container.store) {
 
@@ -90,7 +91,7 @@ private fun IntentReceiver<SettingsIntent>.SettingsScreenContent(
 		Spacer(Modifier.height(14.dp))
 		Text(
 			text = strings.settingsStrings.settingsTitle,
-			color = colors.onBackground,
+			color = colors.text1,
 			style = textStyles.titleMedium22,
 			modifier = Modifier.align(Alignment.CenterHorizontally)
 		)
@@ -98,38 +99,29 @@ private fun IntentReceiver<SettingsIntent>.SettingsScreenContent(
 		Column(modifier = Modifier.verticalScroll(scrollState))
 		{
 			// Внешний вид
-			Text(
-				text = strings.settingsStrings.appearance.uppercase(),
-				color = colors.onBackground,
-				style = textStyles.captionSmall11,
-			)
-			Spacer(Modifier.height(10.dp))
+			TitleItem(strings.settingsStrings.appearance)
 			SettingsItem(
 				icon = VectorRes.SystemThemeIcon,
 				title = strings.settingsStrings.themeApp,
-				text = strings.settingsStrings.darkTheme,
+				text = when(state.selectedTheme){
+					Theme.DARK -> strings.settingsStrings.darkTheme
+					Theme.LIGHT -> strings.settingsStrings.lightTheme
+				},
 			) {onNavEvent(NavEvents.NavTo(NavRoutes.ThemeBS))}
 			Spacer(Modifier.height(12.dp))
 			// Язык
-			Text(
-				text = strings.settingsStrings.language.uppercase(),
-				color = colors.onBackground,
-				style = textStyles.captionSmall11,
-			)
-			Spacer(Modifier.height(10.dp))
+			TitleItem(strings.settingsStrings.language)
 			SettingsItem(
 				icon = VectorRes.LanguageSetIcon,
 				title = strings.settingsStrings.languageApp,
-				text = strings.settingsStrings.russian,
+				text = when(state.selectedLocale){
+					Locale.EN -> strings.settingsStrings.english
+					Locale.RU  -> strings.settingsStrings.russian
+				},
 			) {onNavEvent(NavEvents.NavTo(NavRoutes.LanguageBS))}
 			Spacer(Modifier.height(12.dp))
 			// Как это работает
-			Text(
-				text = strings.settingsStrings.howItWorks.uppercase(),
-				color = colors.onBackground,
-				style = textStyles.captionSmall11,
-			)
-			Spacer(Modifier.height(10.dp))
+			TitleItem(strings.settingsStrings.howItWorks)
 			SettingsItem(
 				icon = VectorRes.HowItWorksIcon,
 				title = strings.settingsStrings.howItWorks,
@@ -142,12 +134,7 @@ private fun IntentReceiver<SettingsIntent>.SettingsScreenContent(
 			) {}
 			Spacer(Modifier.height(12.dp))
 			// О приложении
-			Text(
-				text = strings.settingsStrings.aboutAppTitle.uppercase(),
-				color = colors.onBackground,
-				style = textStyles.captionSmall11,
-			)
-			Spacer(Modifier.height(10.dp))
+			TitleItem(strings.settingsStrings.aboutAppTitle)
 			SettingsItem(
 				icon = VectorRes.AboutAppIcon,
 				title = strings.settingsStrings.aboutAppTitle,
@@ -155,12 +142,7 @@ private fun IntentReceiver<SettingsIntent>.SettingsScreenContent(
 			) {}
 			Spacer(Modifier.height(12.dp))
 			// Документы
-			Text(
-				text = strings.settingsStrings.docs.uppercase(),
-				color = colors.onBackground,
-				style = textStyles.captionSmall11,
-			)
-			Spacer(Modifier.height(10.dp))
+			TitleItem(strings.settingsStrings.docs)
 			SettingsItem(
 				icon = VectorRes.PoliticsIcon,
 				title = strings.settingsStrings.politics,
@@ -172,7 +154,7 @@ private fun IntentReceiver<SettingsIntent>.SettingsScreenContent(
 }
 
 @Composable
-fun SettingsItem(
+private fun SettingsItem(
 	icon: ImageVector,
 	title: String,
 	text: String,
@@ -184,10 +166,11 @@ fun SettingsItem(
 
 	Row(
 		modifier = Modifier.fillMaxWidth()
-			.border(1.dp, colors.onBackground,RoundedCornerShape(12.dp))
+			.border(1.dp, colors.stroke2,RoundedCornerShape(12.dp))
 			.clip(RoundedCornerShape(12.dp))
+			.clickable { onClick() }
 			.padding(4.dp)
-			.clickable { onClick() },
+		,
 		verticalAlignment = Alignment.CenterVertically,
 		horizontalArrangement = Arrangement.SpaceBetween
 	) {
@@ -203,9 +186,9 @@ fun SettingsItem(
 				modifier = Modifier.fillMaxHeight(),
 				verticalArrangement = if (text.isNotEmpty()) Arrangement.SpaceBetween else Arrangement.Center
 			) {
-				Text(title, style = textStyles.bodyMedium16, color = colors.onBackground)
+				Text(title, style = textStyles.bodyMedium16, color = colors.text1)
 				if (text.isNotEmpty()){
-					Text(text, style = textStyles.captionSmall11, color = colors.onBackground)
+					Text(text, style = textStyles.captionSmall11, color = colors.text2)
 				}
 			}
 		}
@@ -217,6 +200,21 @@ fun SettingsItem(
 		)
 	}
 	Spacer(Modifier.height(8.dp))
+}
+
+@Composable
+private fun TitleItem(text: String){
+	val colors = LocalColors.current
+	val textStyles = LocalTextStyles.current
+
+	Column {
+		Text(
+			text = text.uppercase(),
+			color = colors.text2,
+			style = textStyles.captionSmall11,
+		)
+		Spacer(Modifier.height(10.dp))
+	}
 }
 
 

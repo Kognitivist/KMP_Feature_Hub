@@ -22,13 +22,14 @@ import com.kognitivist.moodie.ui.screens._01_Splash.mvi.SplashIntent
 import com.kognitivist.moodie.ui.screens._01_Splash.mvi.SplashState
 import kotlinx.coroutines.delay
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import pro.respawn.flowmvi.api.IntentReceiver
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import pro.respawn.flowmvi.compose.preview.EmptyReceiver
 
 @Composable
 fun SplashScreen(
-	container: SplashVM = koinInject(),
+	container: SplashVM = koinViewModel(),
 	onNavEvent: (NavEvents)-> Unit
 ) = with(container.store) {
 	val state by subscribe()

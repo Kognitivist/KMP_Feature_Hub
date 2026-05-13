@@ -9,13 +9,14 @@ import com.kognitivist.moodie.ui.navigation.NavEvents
 import com.kognitivist.moodie.ui.screens._03_Collection.mvi.CollectionIntent
 import com.kognitivist.moodie.ui.screens._03_Collection.mvi.CollectionState
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 import pro.respawn.flowmvi.api.IntentReceiver
 import pro.respawn.flowmvi.compose.dsl.subscribe
 import pro.respawn.flowmvi.compose.preview.EmptyReceiver
 
 @Composable
 fun CollectionScreen(
-	container: CollectionVM = koinInject(),
+	container: CollectionVM = koinViewModel(),
 	onNavEvent: (NavEvents)-> Unit
 ) = with(container.store) {
 

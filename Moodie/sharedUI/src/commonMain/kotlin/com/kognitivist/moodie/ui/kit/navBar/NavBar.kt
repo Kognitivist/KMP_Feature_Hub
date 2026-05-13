@@ -16,11 +16,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -68,18 +71,25 @@ fun BoxScope.NavBar(
 			.windowInsetsPadding(WindowInsets.systemBars)
 			.align(Alignment.BottomCenter)
 	) {
-		Row(
-			modifier = Modifier.fillMaxWidth().background(colors.background),
-			verticalAlignment = Alignment.CenterVertically,
-			horizontalArrangement = Arrangement.SpaceEvenly
-		) {
-			strings.navBarItems.forEach { entry ->
-				NavBarItem(
-					name = entry.value,
-					navBarItem = entry.key,
-					isSelected = currentRoute == entry.key.routes,
-					onNavEvent = onNavEvent
-				)
+		Column {
+			HorizontalDivider(
+				thickness = 1.dp,
+				color = colors.stroke2
+			)
+			Spacer(Modifier.height(8.dp))
+			Row(
+				modifier = Modifier.fillMaxWidth().background(colors.background),
+				verticalAlignment = Alignment.CenterVertically,
+				horizontalArrangement = Arrangement.SpaceEvenly
+			) {
+				strings.navBarItems.forEach { entry ->
+					NavBarItem(
+						name = entry.value,
+						navBarItem = entry.key,
+						isSelected = currentRoute == entry.key.routes,
+						onNavEvent = onNavEvent
+					)
+				}
 			}
 		}
 	}
@@ -95,7 +105,7 @@ fun RowScope.NavBarItem(
 ) {
 	val colors = LocalColors.current
 	Column(
-		modifier = Modifier.weight(1f)
+		modifier = Modifier.weight(1f).clip(CircleShape)
 			.clickable {
 				onNavEvent(NavEvents.NavTo(navBarItem.routes))
 			},
@@ -105,10 +115,10 @@ fun RowScope.NavBarItem(
 		Icon(
 			imageVector = if (isSelected) navBarItem.selectedIcon else navBarItem.unselectedIcon,
 			contentDescription = null,
-			tint = colors.onBackground
+			tint = if (isSelected) colors.primary else colors.onBackground
 		)
 		Spacer(modifier = Modifier.height(4.dp))
-		Text(name, color = colors.onBackground)
+		Text(name, color = if (isSelected) colors.primary else colors.text1)
 	}
 }
 
