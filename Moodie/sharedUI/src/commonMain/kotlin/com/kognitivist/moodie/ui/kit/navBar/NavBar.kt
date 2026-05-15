@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
@@ -39,6 +40,7 @@ import com.kognitivist.moodie.ui.kit.vectors.UnselectedDiary
 import com.kognitivist.moodie.ui.kit.vectors.UnselectedHome
 import com.kognitivist.moodie.ui.kit.vectors.UnselectedSettings
 import com.kognitivist.moodie.ui.kit.vectors.VectorRes
+import com.kognitivist.moodie.ui.kit.vibroClickable
 import com.kognitivist.moodie.ui.navigation.NavEvents
 import com.kognitivist.moodie.ui.navigation.NavRoutes
 import moodie.sharedui.generated.resources.Res
@@ -68,17 +70,20 @@ fun BoxScope.NavBar(
 			targetOffsetY = { fullHeight -> fullHeight*3 }
 		),
 		modifier = Modifier
-			.windowInsetsPadding(WindowInsets.systemBars)
 			.align(Alignment.BottomCenter)
 	) {
-		Column {
+		Column(
+			modifier = Modifier
+				.background(colors.background)
+				.windowInsetsPadding(WindowInsets.navigationBars)
+			) {
 			HorizontalDivider(
 				thickness = 1.dp,
 				color = colors.stroke2
 			)
 			Spacer(Modifier.height(8.dp))
 			Row(
-				modifier = Modifier.fillMaxWidth().background(colors.background),
+				modifier = Modifier.fillMaxWidth(),
 				verticalAlignment = Alignment.CenterVertically,
 				horizontalArrangement = Arrangement.SpaceEvenly
 			) {
@@ -106,7 +111,7 @@ fun RowScope.NavBarItem(
 	val colors = LocalColors.current
 	Column(
 		modifier = Modifier.weight(1f).clip(CircleShape)
-			.clickable {
+			.vibroClickable {
 				onNavEvent(NavEvents.NavTo(navBarItem.routes))
 			},
 		horizontalAlignment = Alignment.CenterHorizontally,

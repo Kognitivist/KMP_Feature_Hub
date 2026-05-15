@@ -5,7 +5,7 @@ import pro.respawn.flowmvi.api.MVIIntent
 import pro.respawn.flowmvi.api.MVIState
 
 data class HomeState(
-	val dailyTestIsPassed: Boolean = false
+	val dailyTestIsPassed: Boolean = true
 ) : MVIState
 
 sealed interface HomeIntent : MVIIntent {

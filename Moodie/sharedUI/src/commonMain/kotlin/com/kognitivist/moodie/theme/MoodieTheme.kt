@@ -45,9 +45,13 @@ data class Shapes(
 
 @Immutable
 data class TextStyles(
-	val titleMedium22: TextStyle,
-	val captionSmall11: TextStyle,
-	val bodyMedium16: TextStyle,
+	val titleMedium22: TextStyle = TextStyle.Default,
+	val captionSmall11: TextStyle = TextStyle.Default,
+	val bodyMedium16: TextStyle = TextStyle.Default,
+	val bodySmall12: TextStyle = TextStyle.Default,
+	val labelLarge16: TextStyle = TextStyle.Default,
+	val display36: TextStyle = TextStyle.Default,
+	val display30: TextStyle = TextStyle.Default,
 )
 
 @Immutable
@@ -76,13 +80,7 @@ val LocalColors = staticCompositionLocalOf {
 		text3 = Color.Unspecified,
 	)
 }
-val LocalTextStyles = staticCompositionLocalOf {
-	TextStyles(
-		titleMedium22 = TextStyle.Default,
-		captionSmall11 = TextStyle.Default,
-		bodyMedium16 = TextStyle.Default,
-	)
-}
+val LocalTextStyles = staticCompositionLocalOf { TextStyles() }
 
 
 @Composable

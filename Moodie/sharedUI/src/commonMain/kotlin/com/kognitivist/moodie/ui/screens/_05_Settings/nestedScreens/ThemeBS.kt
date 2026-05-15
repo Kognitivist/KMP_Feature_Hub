@@ -29,6 +29,7 @@ import com.kognitivist.moodie.theme.LocalColors
 import com.kognitivist.moodie.theme.LocalTextStyles
 import com.kognitivist.moodie.ui.kit.vectors.SystemThemeIcon
 import com.kognitivist.moodie.ui.kit.vectors.VectorRes
+import com.kognitivist.moodie.ui.kit.vibroClickable
 import com.kognitivist.moodie.ui.navigation.NavEvents
 import com.kognitivist.moodie.ui.screens._05_Settings.SettingsVM
 import com.kognitivist.moodie.ui.screens._05_Settings.mvi.SettingsIntent
@@ -87,7 +88,7 @@ private fun ItemTheme(
 	Row(
 		modifier = Modifier
 			.fillMaxWidth().clip(RoundedCornerShape(12.dp))
-			.clickable{onClick()}.padding(vertical = 16.dp),
+			.vibroClickable{onClick()}.padding(vertical = 16.dp),
 		horizontalArrangement = Arrangement.SpaceBetween,
 		verticalAlignment = Alignment.CenterVertically
 	) {

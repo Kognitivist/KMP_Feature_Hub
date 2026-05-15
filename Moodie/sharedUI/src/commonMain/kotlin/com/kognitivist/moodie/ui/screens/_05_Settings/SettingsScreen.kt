@@ -48,6 +48,7 @@ import com.kognitivist.moodie.ui.kit.vectors.PoliticsIcon
 import com.kognitivist.moodie.ui.kit.vectors.SelectedCollection
 import com.kognitivist.moodie.ui.kit.vectors.SystemThemeIcon
 import com.kognitivist.moodie.ui.kit.vectors.VectorRes
+import com.kognitivist.moodie.ui.kit.vibroClickable
 import com.kognitivist.moodie.ui.navigation.NavEvents
 import com.kognitivist.moodie.ui.navigation.NavRoutes
 import com.kognitivist.moodie.ui.screens._05_Settings.mvi.SettingsIntent
@@ -168,7 +169,7 @@ private fun SettingsItem(
 		modifier = Modifier.fillMaxWidth()
 			.border(1.dp, colors.stroke2,RoundedCornerShape(12.dp))
 			.clip(RoundedCornerShape(12.dp))
-			.clickable { onClick() }
+			.vibroClickable { onClick() }
 			.padding(4.dp)
 		,
 		verticalAlignment = Alignment.CenterVertically,
